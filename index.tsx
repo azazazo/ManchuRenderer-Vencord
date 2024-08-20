@@ -3,6 +3,22 @@ import { definePluginSettings } from "@api/Settings";
 import { makeRange } from "@components/PluginSettings/components";
 
 let settings = definePluginSettings({
+    font: {
+        type: OptionType.SELECT,
+        description: "Which font to use for Manchu text",
+        options: [
+            {
+                label: "Default system font",
+                value: "default",
+                default: true,
+            },
+            {
+                label: "Noto Sans Mongolian",
+                value: "noto",
+            },
+        ],
+        onChange: () => updateStyles()
+    },
     size: {
         type: OptionType.SLIDER,
         description: "Font size in pt",
@@ -16,13 +32,16 @@ let settings = definePluginSettings({
 let styles: HTMLStyleElement;
 const updateStyles = () => {
     const size = Vencord.Settings.plugins.ManchuRenderer.size;
+    const font = Vencord.Settings.plugins.ManchuRenderer.font === "noto" ? "@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mongolian&display=swap');" : "";
     styles.textContent = `
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mongolian&display=swap');
+${font}
 div:lang(mnc) {
     font-family: "Noto Sans Mongolian";
     writing-mode: vertical-lr;
     font-size: ${size}pt;
-}`};
+}`
+    console.log(styles.textContent);
+};
 
 
 function isManchu(s: string) {
@@ -51,6 +70,7 @@ export default definePlugin({
     modify(e, c) {
         
         if (isManchu(e.message.content)) {
+            // console.log(e.message.content);
             return <div lang="mnc">{c}</div>
         } else {
             return c;
