@@ -1,5 +1,4 @@
 import definePlugin, { OptionType } from "@utils/types";
-import { Devs } from "@utils/constants";
 import { definePluginSettings } from "@api/Settings";
 import { makeRange } from "@components/PluginSettings/components";
 
