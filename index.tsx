@@ -15,8 +15,6 @@ let settings = definePluginSettings({
 
 let styles: HTMLStyleElement;
 const updateStyles = () => {
-    console.log("gjkhlkfhakhad");
-    console.log(Vencord.Settings.plugins.ManchuRenderer);
     const size = Vencord.Settings.plugins.ManchuRenderer.size;
     styles.textContent = `
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mongolian&display=swap');
@@ -53,7 +51,6 @@ export default definePlugin({
     modify(e, c) {
         
         if (isManchu(e.message.content)) {
-            console.log(e.message.content);
             return <div lang="mnc">{c}</div>
         } else {
             return c;
