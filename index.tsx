@@ -40,7 +40,6 @@ div:lang(mnc) {
     writing-mode: vertical-lr;
     font-size: ${size}pt;
 }`
-    console.log(styles.textContent);
 };
 
 
