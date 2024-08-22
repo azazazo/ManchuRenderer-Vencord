@@ -44,7 +44,7 @@ div:lang(mnc) {
 
 
 function isManchu(s: string) {
-    return s.match(/((\p{Script=Mongolian}+\p{Script=Common}*)+)/gu);
+    return s.match(/^((\p{Script=Mongolian}| |\n)+)$/gu);
 }
 
 export default definePlugin({
@@ -67,9 +67,9 @@ export default definePlugin({
     ],
 
     modify(e, c) {
-        
         if (isManchu(e.message.content)) {
             // console.log(e.message.content);
+            // console.log(c.props.children);
             return <div lang="mnc">{c}</div>
         } else {
             return c;
