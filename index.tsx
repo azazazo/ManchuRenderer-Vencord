@@ -1,6 +1,5 @@
 import definePlugin, { OptionType } from "@utils/types";
 import { definePluginSettings } from "@api/Settings";
-import { makeRange } from "@components/PluginSettings/components";
 
 let settings = definePluginSettings({
     font: {
@@ -22,7 +21,7 @@ let settings = definePluginSettings({
     size: {
         type: OptionType.SLIDER,
         description: "Font size in pt",
-        markers: makeRange(12, 40, 1),
+        markers: [14, 16, 18, 20, 24, 32, 40],
         default: 16,
         stickToMarkers: true,
         onChange: () => updateStyles()
